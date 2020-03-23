@@ -38,7 +38,7 @@
     "client": [
       {
         "file": "test.txt",
-        "target": "/home",
+        "target": "/root",
         "chmod": "+x"
       }
     ]
