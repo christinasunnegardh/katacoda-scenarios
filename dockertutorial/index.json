@@ -34,7 +34,9 @@
       "text": "finish.md"
     },
     "assets": {
-      "client": [{"file": "test.txt", "target": "~/testfolder"}]
+      "client": [
+        {"file": "my-application/*", "target": "~/my-application"}
+      ]
     }
   },
   "environment": {
