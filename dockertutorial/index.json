@@ -35,11 +35,7 @@
     },
     "assets": {
       "client": [
-        {"file": "app-root/*", "target": "~/my-application"},
-        {"file": "client-root/*", "target": "~/my-application/client"},
-        {"file": "client-public/*", "target": "~/my-application/client/public"},
-        {"file": "client-src/*", "target": "~/my-application/client/src"},
-        {"file": "server/*", "target": "~/my-application/server"}
+        {"file": "app-root/*", "target": "~/my-application"}
       ]
     }
   },
