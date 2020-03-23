@@ -42,6 +42,9 @@
       }
     ]
   },
+  "files": [
+    "test.txt"
+  ],
   "environment": {
     "uilayout": "terminal"
   },
