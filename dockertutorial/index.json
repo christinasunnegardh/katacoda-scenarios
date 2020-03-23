@@ -35,10 +35,10 @@
     }
   },
   "assets": {
-    "host01": [
+    "client": [
       {
         "file": "test.txt",
-        "target": "~/"
+        "target": "/home"
       }
     ]
   },
