@@ -46,7 +46,7 @@
     "test.txt"
   ],
   "environment": {
-    "uilayout": "terminal"
+    "uilayout": "editor-terminal"
   },
   "backend": {
     "imageid": "ubuntu1904"
