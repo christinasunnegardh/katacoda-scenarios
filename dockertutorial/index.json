@@ -36,7 +36,7 @@
     "assets": {
       "client": [
         {"file": "app-root/*", "target": "~/my-application"},
-        {"file": "client-root/*", "target": "~/my-application/client"}
+        {"file": "client-src/*", "target": "~/"}
       ]
     }
   },
