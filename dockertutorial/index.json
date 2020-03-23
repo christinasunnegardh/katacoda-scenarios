@@ -34,6 +34,20 @@
       "text": "finish.md"
     }
   },
+  "assets": {
+    "client": [
+      {
+        "file": "1.png",
+        "target": "~/"
+      }
+    ],
+    "host01": [
+      {
+        "file": "2.png",
+        "target": "~/"
+      }
+    ]
+  },
   "environment": {
     "uilayout": "terminal"
   },
