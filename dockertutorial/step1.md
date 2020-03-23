@@ -4,7 +4,7 @@
 
 Docker is a service that enables developers to run software virtually anywhere, without having to worry about aspects of the environment (for example dependencies, libraries and different OS:es). It enables this by ultimately providing isolated containers in which the software is run. What containers are and how they are created will be explained below.
 
-/katacoda-scenarios/dockertutorial/assets/1.png
+/dockertutorial/assets/1.png
 
 ![Docker1](/dockertutorial/assets/1.png)
 
