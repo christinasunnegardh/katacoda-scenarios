@@ -42,6 +42,6 @@
     "uimessage1": "\u001b[32mYour Interactive Bash Terminal.\r\n Try ls. \u001b[m\r\n"
   },
   "backend": {
-    "imageid": "ubuntu1904"
+    "imageid": "docker"
   }
 }
