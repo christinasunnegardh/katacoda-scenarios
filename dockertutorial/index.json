@@ -35,16 +35,14 @@
     }
   },
   "assets": {
-    "host01": [
+    "client": [
       {
         "file": "test.txt",
-        "target": "/home"
+        "target": "/home",
+        "chmod": "+x"
       }
     ]
   },
-  "files": [
-    "test.txt"
-  ],
   "environment": {
     "uilayout": "editor-terminal"
   },
