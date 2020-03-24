@@ -35,10 +35,6 @@
       "text": "finish.md"
     },
     "assets": {
-      "client": [
-        {"file": "app-root/*", "target": "~/my-application"},
-        {"file": "client-src/*", "target": "~/"}
-      ]
     }
   },
   "environment": {

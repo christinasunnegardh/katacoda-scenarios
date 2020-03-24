@@ -1,2 +1,1 @@
-mkdir testfolder
-git clone https://github.com/christinasunnegardh/katacoda-scenarios.git
+git clone https://github.com/klaraesr/docker-tutorial.git
