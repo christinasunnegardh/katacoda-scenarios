@@ -38,7 +38,7 @@
     }
   },
   "environment": {
-    "uilayout": "terminal",
+    "uilayout": "editor-terminal",
     "uimessage1": "\u001b[32mYour Interactive Bash Terminal.\r\n Try ls. \u001b[m\r\n"
   },
   "backend": {
