@@ -39,7 +39,7 @@ To be able to install all dependencies for our React frontend, we need to copy `
 - `RUN npm install`
 We then run npm install on the image. We add the flag `-- silent` to suppress the npm output. 
 
-    NOTE: As you notice below, we copy the `package.json` file as well as run the installation before copying the rest of the source code. We do this as it creates separate layers for the installation of the dependencies, which means that it will be cached. If you wish to rebuild the image and `package.json` has not been modified, it can skip this step.
+    NOTE: As you notice below, we copy the `package.json` file as well as run the installation before copying the rest of the source code. We do this as it creates separate layers for the installation of the dependencies, which means that it will be cached. If you wish to rebuild the image and `package.json` has not been modified, the build can skip this step.
 
 - `COPY . .`
 We want to copy the rest of the source code as well.
