@@ -9,6 +9,7 @@ In the `client` directory, create a file called .dockerignore.
 This file will specify everything we want to exclude when building the image, to make the build lighter and faster.
 
 Paste the following in the .dockerignore file: 
+
 `node_modules 
 .git
 .gitignore`{{copy}}
@@ -24,12 +25,12 @@ The --tag option let's you state the name of the image and the tag/version, on t
 `Successfully built [Image ID]
 Successfully tagged react-test-app:1.0`
 
+To see all available images, run `docker images`{{execute}}.
+
 ## Run container
 
 Time to run a container based of our image. 
 
 `docker container run --interactive --publish 3000:3000 react-test-app:1.0`{{execute}}
 
-https://[[HOST_SUBDOMAIN]]-3000-[[KATACODA_HOST]].environments.katacoda.com/
-
-Congratulations! You now have a running container.
+Congratulations! You now have a running container. You can view the React page served from Docker at https://[[HOST_SUBDOMAIN]]-3000-[[KATACODA_HOST]].environments.katacoda.com/.
