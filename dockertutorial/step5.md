@@ -8,17 +8,21 @@ Let's start by dockerizing the React application in the client folder, which is 
 To create a Docker image, we must start by creating a Dockerfile in the `client` folder. 
 
 *enter the client folder*
-
 `cd my-application/client/`{{execute}}
 
 *create the Dockerfile*
-
 `touch Dockerfile`{{execute}}
 
 New layout:
 
 <pre class="file" data-filename="Dockerfile" data-target="replace">
 FROM node:12
+WORKDIR /usr/src/app
+COPY package.json .
+RUN npm install
+COPY . .
+EXPOSE 3000
+CMD ["npm", "start"]
 </pre>
 
 END
