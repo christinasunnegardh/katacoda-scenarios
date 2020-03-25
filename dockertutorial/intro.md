@@ -1,4 +1,4 @@
-Welcome to this tutorial, where you will learn about Docker as well as get hands-on experience on how to use Docker Compose to containerize an application with React JS frontend and Node JS backend separately.
+Welcome to this tutorial, where you will learn about Docker as well as get hands-on experience on how to use Docker Compose to containerize an application with a React JS frontend and a Node JS backend separately.
 
 This tutorial has the following structure:
 

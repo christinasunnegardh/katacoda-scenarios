@@ -2,18 +2,28 @@
 <!-- Test that it works with npm before getting into Docker? -->
 # Dockerize the frontend
 
-Let's start by dockerizing the React application, which is the frontend of our application. We will start by creating a Docker image for in the client folder, which is the frontend part of the application.
+Let's start by dockerizing the React application in the client folder, which is the frontend of our application. We will thereby need to create a Docker image for it.
 
 ## Define parent/base image and working directory 
 To create a Docker image, we must start by creating a Dockerfile in the `client` folder. 
 
-*entering the client folder*..
-`cd docker-tutorial/my-application/client/`{{execute}}
+*enter the client folder*
+
+`cd my-application/client/`{{execute}}
 
 *create the Dockerfile*
+
 `touch Dockerfile`{{execute}}
 
-The first thing we want to do is to define the parent, or base, image which our customized image will then be built upon.
+New layout:
+
+<pre class="file" data-filename="Dockerfile" data-target="replace">
+FROM node:12
+</pre>
+
+END
+
+The first thing we want to do is to define the parent/base image which our customized image will then be built upon.
 
 `FROM node:12`{{copy}}
 
