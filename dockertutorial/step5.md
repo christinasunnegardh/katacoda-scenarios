@@ -4,7 +4,7 @@
 
 Let's start by dockerizing the React application in the client folder, which is the frontend of our application. We will thereby need to create a Docker image for it.
 
-## Creating a Dockerfile
+### Creating a Dockerfile
 To create a Docker image, we must start by creating a Dockerfile in the `client` folder. 
 
 *enter the client folder*
@@ -13,16 +13,16 @@ To create a Docker image, we must start by creating a Dockerfile in the `client`
 *create the Dockerfile*
 `touch Dockerfile`{{execute}}
 
-Navigate to your newly created Dockerfile and copy the following to the file:
+Navigate to your newly created Dockerfile in the editor to the top left and copy the following to the file:
 
 <pre class="file" data-filename="Dockerfile" data-target="replace">
-    FROM node:12
-    WORKDIR /usr/src/app
-    COPY package.json .
-    RUN npm install
-    COPY . .
-    EXPOSE 3000
-    CMD ["npm", "start"]
+FROM node:12
+WORKDIR /usr/src/app
+COPY package.json .
+RUN npm install
+COPY . .
+EXPOSE 3000
+CMD ["npm", "start"]
 </pre>
 
 So, what does all of these commands do? Let's go through them!
@@ -47,16 +47,16 @@ We want to copy the rest of the source code as well.
 - `EXPOSE 3000`
 We need to specify on what port we can access the container. The default port used by React development server is 3000, so this is the port we'll expose.
 
--`CMD ["npm", "start"]`
+- `CMD ["npm", "start"]`
 Finally, we state which command we should execute when a container is run.
 
 <!-- "The EXPOSE instruction informs Docker that the container listens on the specified network ports at runtime." "If you EXPOSE a port, the service in the container is not accessible from outside Docker, but from inside other Docker containers. So this is good for inter-container communication." not sure if i understand -->
 <!-- Maybe explain this more -->
 
-## Build Docker image
+### Build Docker image
 In this step we will build the image based on the Dockerfile we just created, and run the container for the client.
 
-### Exclude files during build
+#### Exclude files during build
 Before we build the image, we want to exclude some files from the build to make the build lighter and faster. We will specify these folders and files in a file called `.dockerignore` in the client folder.
 
 *create the file (make sure you are still in the **client** folder)*
@@ -65,12 +65,12 @@ Before we build the image, we want to exclude some files from the build to make 
 Open the `.dockerignore` file in the editor and paste the following:
 
 <pre class="file" data-filename=".dockerignore" data-target="replace">
-    node_modules 
-    .git
-    .gitignore
+node_modules 
+.git
+.gitignore
 </pre>
 
-### Run build command
+#### Run build command
 
 Make sure you're still in the `client` folder, and run the following command to build an image in the current directory:
 
@@ -83,10 +83,10 @@ Successfully tagged react-test-app:1.0`
 
 To see all available images, run `docker images`{{execute}}.
 
-## Run container
+### Run container
 
 Time to run a container based of our image. 
 
 `docker container run --interactive --publish 3000:3000 react-test-app:1.0`{{execute}}
 
-Congratulations! You now have a running container. You can view the React page served from Docker at https://[[HOST_SUBDOMAIN]]-3000-[[KATACODA_HOST]].environments.katacoda.com/.
+**Congratulations!** You now have a running container. You can view the React page served from Docker at https://[[HOST_SUBDOMAIN]]-3000-[[KATACODA_HOST]].environments.katacoda.com/.
