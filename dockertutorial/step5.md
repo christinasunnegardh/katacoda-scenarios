@@ -11,7 +11,7 @@ To create a Docker image, we must start by creating a Dockerfile in the `client`
 *create the Dockerfile*
 `touch Dockerfile`{{execute}}
 
-Navigate to your newly created Dockerfile in the editor to the top left and copy the following to the file:
+Navigate to your newly created Dockerfile (in the `client` folder) in the editor to the top left and copy the following to the file:
 
 <pre class="file" data-filename="Dockerfile" data-target="replace">
 FROM node:12
@@ -23,7 +23,7 @@ EXPOSE 3000
 CMD ["npm", "start"]
 </pre>
 
-So, what does all of these commands do? Let's go through them!
+These instructions (one per line) all create a new read-only *layer* in the Docker image. So, what does all of these instructions do? Let's go through them!
 
 
 - `FROM node:12`
@@ -37,7 +37,9 @@ This creates the working directory on the image where the rest of the commands (
 To be able to install all dependencies for our React frontend, we need to copy `package.json` from our host's file system to the image's filesystem.
 
 - `RUN npm install`
-We then run npm install on the image. We add the flag `-- silent` to suppress the npm output.
+We then run npm install on the image. We add the flag `-- silent` to suppress the npm output. 
+
+    NOTE: As you notice below, we copy the `package.json` file as well as run the installation before copying the rest of the source code. We do this as it creates separate layers for the installation of the dependencies, which means that it will be cached. If you wish to rebuild the image and `package.json` has not been modified, it can skip this step.
 
 - `COPY . .`
 We want to copy the rest of the source code as well.
@@ -54,7 +56,8 @@ Finally, we state which command we should execute when a container is run.
 ### Build Docker image
 In this step we will build the image based on the Dockerfile we just created, and run the container for the client.
 
-#### Exclude files during build
+**Exclude files during build**
+
 Before we build the image, we want to exclude some files from the build to make the build lighter and faster. We will specify these folders and files in a file called `.dockerignore` in the client folder.
 
 *create the file (make sure you are still in the **client** folder)*
@@ -68,7 +71,10 @@ node_modules
 .gitignore
 </pre>
 
-#### Run build command
+The node_modules folder can be ignored, as they will be installed on build. We are also ignoring files that are related to Git.
+
+
+**Run build command**
 
 Make sure you're still in the `client` folder, and run the following command to build an image in the current directory:
 
