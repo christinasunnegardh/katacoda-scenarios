@@ -1,5 +1,3 @@
-# Docker's role in DevOps
-
 ![Docker2](https://github.com/christinasunnegardh/katacoda-scenarios/blob/master/dockertutorial/assets/2.png?raw=true)
 
 As seen in the above figure, Docker could be seen as part of the “deploy” and “operate” phases in the DevOps practice. This as Docker solves issues that can arise when running software on different environments during development, staging and production. I.e. that code that works on developers' computers could, due to environmental settings, not work on testers’ computers and in production environment. By containerizing the software, as described on the previous slide, this problem is eliminated.

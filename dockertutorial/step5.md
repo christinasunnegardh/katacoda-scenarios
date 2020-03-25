@@ -1,7 +1,5 @@
 
 <!-- Test that it works with npm before getting into Docker? -->
-# Dockerize the frontend
-
 Let's start by dockerizing the React application in the client folder, which is the frontend of our application. We will thereby need to create a Docker image for it.
 
 ### Creating a Dockerfile

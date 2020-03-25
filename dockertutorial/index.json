@@ -7,11 +7,11 @@
   "details": {
     "steps": [
       {
-        "title": "",
+        "title": "What is Docker?",
         "text": "step1.md"
       },
       {
-        "title": "",
+        "title": "Docker's role in DevOps",
         "text": "step2.md"
       },
       {
@@ -23,11 +23,11 @@
         "text": "step4.md"
       },
       {
-        "title": "",
+        "title": "Dockerize the frontend",
         "text": "step5.md"
       },
       {
-        "title": "",
+        "title": "Dockerize the server",
         "text": "step6.md"
       }
     ],

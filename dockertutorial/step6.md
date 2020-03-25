@@ -1,5 +1,3 @@
-# Dockerize the server
-
 We will now repeat step 4 and step 5, but for the server. Navigate to the server directory and create the Dockerfile and the .dockerignore.
 
 `cd ../server
