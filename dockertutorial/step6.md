@@ -17,7 +17,7 @@ COPY package.json .
 RUN npm install
 COPY . .
 EXPOSE 9000
-CMD [ "npm", "start" ]`{{copy}}
+CMD [ "npm", "start" ]
 </pre>
 
 Our Dockerfile will look very similar to that of the client, except for the port. In `app.js` we can see that our server listens to port 9000, so we should expose this.
