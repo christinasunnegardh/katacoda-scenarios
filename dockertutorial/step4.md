@@ -22,7 +22,7 @@ On the next line, add `WORKDIR /usr/src/app`{{copy}}. This creates the working d
 
 To install all dependencies for our React frontend, we first need to copy `package.json` from our host to the image's filesystem, and then run npm install. Add the flag `-- silent` if you want to suppress the npm output.
 
-`COPY package.json
+`COPY package.json .
 RUN npm install`{{copy}}
 
 After this, we want to copy the rest of the source code as well.
