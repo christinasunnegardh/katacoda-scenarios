@@ -25,29 +25,21 @@
       {
         "title": "",
         "text": "step5.md"
-      },
-      {
-        "title": "",
-        "text": "step6.md"
-      },
-      {
-        "title": "",
-        "text": "step7.md"
       }
     ],
     "intro": {
-      "text": "intro.md",
-      "courseData": "cloneProject.sh"
+      "text": "intro.md"
     },
     "finish": {
       "text": "finish.md"
     },
     "assets": {
+      "client": [{"file": "test.txt", "target": "~/"}]
     }
   },
   "environment": {
-    "uilayout": "editor-terminal",
-    "uimessage1": "\u001b[32mYour Interactive Bash Terminal.\r"
+    "uilayout": "terminal",
+    "uimessage1": "\u001b[32mYour Interactive Bash Terminal.\r\n Try ls. \u001b[m\r\n"
   },
   "backend": {
     "imageid": "docker"

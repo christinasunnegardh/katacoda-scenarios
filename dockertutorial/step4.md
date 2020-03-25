@@ -1,42 +1,15 @@
+# Hands-on: Separate a React/Node.js application into frontend/backend containers
 
-<!-- Test that it works with npm before getting into Docker? -->
-# Creating the Dockerfile
 
-## Define parent image and working directory 
-Start by creating a Dockerfile in the `client` folder. 
+As we now have some background on Docker and why separating an application into containers for frontend/backend is useful, you will now get the chance to test this out on a small React/Node.js application.
 
-`cd docker-tutorial/my-application/client/
-touch Dockerfile`{{execute}}.
+In your editor to the top left, you can see the application source code. It should have the same structure as on the picture below:
 
-The first thing we want to do is to define the parent image which our image will be built upon. 
+IMAGE
 
-`FROM node:12`{{copy}}. 
+The **client** folder contains the frontend, and the **server** folder contains the backend of the application. When running, the server is continuously listening for a connection on port 9000. The frontend simply makes an API call to localhost:9000 and displays the response on the start page.
 
-Here we use the official Docker image for Node.js, version 12. 
-
-<!-- Alpine: resulting in a smaller image than a normal version would give. -->
-
-On the next line, add `WORKDIR /usr/src/app`{{copy}}. This creates the working directory for the following commands.
-
-## Install dependencies and copy source code
-
-To install all dependencies for our React frontend, we first need to copy `package.json` from our host to the image's filesystem, and then run npm install. Add the flag `-- silent` if you want to suppress the npm output.
-
-`COPY package.json .
-RUN npm install`{{copy}}
-
-After this, we want to copy the rest of the source code as well.
-
-`COPY . .`{{copy}}
-
-## Describe how to start the client
-
-To start the client, we first need to specify which port the continers listen to at run time (?). The default port used by React development server is 3000, so this is the port we'll expose.
-
-`EXPOSE 3000`{{copy}}
-<!-- "The EXPOSE instruction informs Docker that the container listens on the specified network ports at runtime." "If you EXPOSE a port, the service in the container is not accessible from outside Docker, but from inside other Docker containers. So this is good for inter-container communication." not sure if i understand -->
-
-Next, we need to state which command we should execute inside a running container (?). 
-
-`CMD ["npm", "start"]`{{copy}}
-<!-- Maybe explain this more -->
+We will now:
+- Containerize frontend
+- Containerize backend
+- Use Docker Compose to start them simultaneously with one single command

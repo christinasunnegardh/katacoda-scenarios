@@ -1,36 +1,47 @@
-# Build the image and run the container
-In this step we will build the image based on the Dockerfile we just created, and run the container for the client.
 
-## Exclude files during build
-In the `client` directory, create a file called .dockerignore.
+<!-- Test that it works with npm before getting into Docker? -->
+# Dockerize the frontend
 
-`touch .dockerignore`{{execute}} 
- 
-This file will specify everything we want to exclude when building the image, to make the build lighter and faster.
+Let's start by dockerizing the React application, which is the frontend of our application. We will start by creating a Docker image for in the client folder, which is the frontend part of the application.
 
-Paste the following in the .dockerignore file: 
+## Define parent/base image and working directory 
+To create a Docker image, we must start by creating a Dockerfile in the `client` folder. 
 
-`node_modules 
-.git
-.gitignore`{{copy}}
+*entering the client folder*..
+`cd docker-tutorial/my-application/client/`{{execute}}
 
-## Build image
+*create the Dockerfile*
+`touch Dockerfile`{{execute}}
 
-Make sure you're still in the `client` folder, and run the following command to build an image in the current directory:
+The first thing we want to do is to define the parent, or base, image which our customized image will then be built upon.
 
-`docker image build --tag react-test-app:1.0 .`{{execute}}
+`FROM node:12`{{copy}}
 
-The --tag option let's you state the name of the image and the tag/version, on the format `name:tag`. When the build has finished you should see 
+Here we use the official Docker image for Node.js, version 12 as the parent/base image. 
 
-`Successfully built [Image ID]
-Successfully tagged react-test-app:1.0`
+<!-- Alpine: resulting in a smaller image than a normal version would give. -->
 
-To see all available images, run `docker images`{{execute}}.
+On the next line, add `WORKDIR /usr/src/app`{{copy}}. This creates the working directory on the image where the next commands will be executed.
 
-## Run container
+## Install dependencies and copy source code
 
-Time to run a container based of our image. 
+To install all dependencies for our React frontend, we first need to copy `package.json` from our host to the image's filesystem, and then run npm install. Add the flag `-- silent` if you want to suppress the npm output.
 
-`docker container run --interactive --publish 3000:3000 react-test-app:1.0`{{execute}}
+`COPY package.json .
+RUN npm install`{{copy}}
 
-Congratulations! You now have a running container. You can view the React page served from Docker at https://[[HOST_SUBDOMAIN]]-3000-[[KATACODA_HOST]].environments.katacoda.com/.
+After this, we want to copy the rest of the source code as well.
+
+`COPY . .`{{copy}}
+
+## Describe how to start the client
+
+To start the client, we first need to specify which port the continers listen to at run time (?). The default port used by React development server is 3000, so this is the port we'll expose.
+
+`EXPOSE 3000`{{copy}}
+<!-- "The EXPOSE instruction informs Docker that the container listens on the specified network ports at runtime." "If you EXPOSE a port, the service in the container is not accessible from outside Docker, but from inside other Docker containers. So this is good for inter-container communication." not sure if i understand -->
+
+Next, we need to state which command we should execute inside a running container (?). 
+
+`CMD ["npm", "start"]`{{copy}}
+<!-- Maybe explain this more -->
