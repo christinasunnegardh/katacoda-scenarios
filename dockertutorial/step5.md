@@ -13,7 +13,7 @@ To create a Docker image, we must start by creating a Dockerfile in the `client`
 *create the Dockerfile*
 `touch Dockerfile`{{execute}}
 
-New layout:
+Navigate to your newly created Dockerfile and copy the following to the file:
 
 <pre class="file" data-filename="Dockerfile" data-target="replace">
 FROM node:12
@@ -25,37 +25,30 @@ EXPOSE 3000
 CMD ["npm", "start"]
 </pre>
 
-END
+So, what does all of these commands do? Let's go through them!
 
+
+- `FROM node:12`
 The first thing we want to do is to define the parent/base image which our customized image will then be built upon.
-
-`FROM node:12`{{copy}}
-
 Here we use the official Docker image for Node.js, version 12 as the parent/base image. 
 
-<!-- Alpine: resulting in a smaller image than a normal version would give. -->
+- `WORKDIR /usr/src/app` 
+This creates the working directory on the image where the rest of the commands (COPY, RUN, etc..) will be executed.
 
-On the next line, add `WORKDIR /usr/src/app`{{copy}}. This creates the working directory on the image where the next commands will be executed.
+- `COPY package.json .`
+To be able to install all dependencies for our React frontend, we need to copy `package.json` from our host's file system to the image's filesystem.
 
-## Install dependencies and copy source code
+- `RUN npm install`
+We then run npm install on the image. We add the flag `-- silent` to suppress the npm output.
 
-To install all dependencies for our React frontend, we first need to copy `package.json` from our host to the image's filesystem, and then run npm install. Add the flag `-- silent` if you want to suppress the npm output.
+- `COPY . .`
+We want to copy the rest of the source code as well.
 
-`COPY package.json .
-RUN npm install`{{copy}}
+- `EXPOSE 3000`
+We need to specify on what port we can access the container. The default port used by React development server is 3000, so this is the port we'll expose.
 
-After this, we want to copy the rest of the source code as well.
+-`CMD ["npm", "start"]`
+Finally, we state which command we should execute when a container is run.
 
-`COPY . .`{{copy}}
-
-## Describe how to start the client
-
-To start the client, we first need to specify which port the continers listen to at run time (?). The default port used by React development server is 3000, so this is the port we'll expose.
-
-`EXPOSE 3000`{{copy}}
 <!-- "The EXPOSE instruction informs Docker that the container listens on the specified network ports at runtime." "If you EXPOSE a port, the service in the container is not accessible from outside Docker, but from inside other Docker containers. So this is good for inter-container communication." not sure if i understand -->
-
-Next, we need to state which command we should execute inside a running container (?). 
-
-`CMD ["npm", "start"]`{{copy}}
 <!-- Maybe explain this more -->
