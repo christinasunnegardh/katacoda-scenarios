@@ -1,6 +1,6 @@
 
 <!-- Test that it works with npm before getting into Docker? -->
-# Dockerizing the client
+# Creating the Dockerfile
 
 ## Define parent image and working directory 
 Start by creating a Dockerfile in the `client` folder. 
@@ -40,15 +40,3 @@ Next, we need to state which command we should execute inside a running containe
 
 `CMD ["npm", "start"]`{{copy}}
 <!-- Maybe explain this more -->
-
-## Exclude files during build
-Still in the `client` directory, create a file called .dockerignore.
-
-`touch .dockerignore`{{execute}} 
- 
-This file will specify everything we want to exclude when building the image, to make the build lighter and faster.
-
-Paste the following in the .dockerignore file: 
-`node_modules 
-.git
-.gitignore`{{copy}}
