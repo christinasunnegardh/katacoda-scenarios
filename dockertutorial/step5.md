@@ -30,6 +30,6 @@ Time to run a container based of our image.
 
 `docker container run --interactive --publish 3000:3000 react-test-app:1.0`{{execute}}
 
-https://dockertutorial-3000-sunneg.environments.katacoda.com/
+https://[[HOST_SUBDOMAIN]]-3000-[[KATACODA_HOST]].environments.katacoda.com/
 
 Congratulations! You now have a running container.
