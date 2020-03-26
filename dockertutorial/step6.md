@@ -3,7 +3,7 @@ Dockerizing the backend, follows the same steps as for the frontend with some sl
 ### Creating a Dockerfile
 
 *enter the server folder*
-`cd my-application/server/`{{execute}}
+`cd ../server/`{{execute}}
 
 *create the Dockerfile*
 `touch Dockerfile`{{execute}}
@@ -49,7 +49,7 @@ Next, build the image.
 
 Run a container based on the image.
 
-`docker run --publish 12345:9000 test-node-app:1.0`{{execute}}
+`docker run --publish 12345:9000 node-test-app:1.0`{{execute}}
 
 If we want to, we can add the `--detach` option to the docker run command, in order to run the container in the background. Only the id of the container will be printed in the terminal. In this case, we need to stop the container afterwards with `docker stop [container ID]`. Run `docker ps`{{execute}} to view all running containers.
 
