@@ -29,6 +29,10 @@
       {
         "title": "Dockerize the server",
         "text": "step6.md"
+      },
+      {
+        "title": "Docker Compose",
+        "text": "step7.md"
       }
     ],
     "intro": {
