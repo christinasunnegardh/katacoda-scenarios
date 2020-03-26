@@ -12,10 +12,10 @@ Navigate to your newly created Dockerfile **(in the `server` folder this time!)*
 
 <pre class="file" data-filename="Dockerfile" data-target="replace">
 FROM node:12
-WORKDIR /app
-COPY package.json /app
+WORKDIR /usr/src/app
+COPY package.json .
 RUN npm install --silent
-COPY . /app
+COPY . .
 EXPOSE 9000
 CMD [ "npm", "start" ]
 </pre>

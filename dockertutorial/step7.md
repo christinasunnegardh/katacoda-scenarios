@@ -19,11 +19,11 @@ In the *docker-compose.yml* file, we'll define the services that our application
   services:
     frontend:
       build: ./client
+      tty: true
       ports:
         - '3000:3000'
       depends_on:
         - backend
-	    tty: true
     backend:
       build: ./server
       ports:

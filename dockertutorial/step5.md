@@ -17,10 +17,10 @@ Navigate to your newly created Dockerfile (in the `client` folder) in the editor
 
 <pre class="file" data-filename="Dockerfile" data-target="replace">
 FROM node:12
-WORKDIR /app
-COPY package.json /app
+WORKDIR /usr/src/app
+COPY package.json .
 RUN npm install --silent
-COPY . /app
+COPY . .
 EXPOSE 3000
 CMD ["npm", "start"]
 </pre>
@@ -82,7 +82,7 @@ Make sure you're still in the `client` folder, and run the following command to 
 
 `docker image build --tag react-test-app:1.0 .`{{execute}}
 
-*This might take some time! Especially step 4.*
+*This might take some time! Especially in step 5.*
 
 The `--tag` option let's you state the name of the image and the tag/version, on the format `name:tag`. When the build has finished you should see:
 
