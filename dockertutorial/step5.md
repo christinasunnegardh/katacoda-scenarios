@@ -32,7 +32,7 @@ These instructions (one per line) all create a new read-only *layer* in the Dock
 The first thing we want to do is to define the parent/base image which our customized image will then be built upon.
 Here we use the official Docker image for Node.js, version 12 as the parent/base image. 
 
-- `WORKDIR /code` 
+- `WORKDIR /app` 
 This creates the working directory on the image where the rest of the commands (COPY, RUN, etc..) will be executed.
 
 - `COPY package.json /app`
@@ -103,4 +103,4 @@ The base command to run a container from an image is `docker container run [imag
 
 Go and view the React page served from Docker at https://[[HOST_SUBDOMAIN]]-3000-[[KATACODA_HOST]].environments.katacoda.com/.
 
-After you have had a look at the page, let's stop the container with `docker stop client`. 
+After you have had a look at the page, let's stop the container with `docker stop client`{{execute}}. 

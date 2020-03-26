@@ -55,4 +55,4 @@ Run `docker ps`{{execute}} to view all running containers.
 
 While the server container is running, you can access it at https://[[HOST_SUBDOMAIN]]-12345-[[KATACODA_HOST]].environments.katacoda.com/.
 
-After you have had a look at the page, let's stop the containter with `docker stop server`.
+After you have had a look at the page, let's stop the containter with `docker stop server`{{execute}}.
