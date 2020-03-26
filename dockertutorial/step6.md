@@ -8,7 +8,7 @@ Dockerizing the backend, follows the same steps as for the frontend with some sl
 *create the Dockerfile*
 `touch Dockerfile`{{execute}}
 
-Navigate to your newly created Dockerfile **(in the `server` folder this time!)** in the editor to the top left and copy the following to the file:
+Navigate to your newly created Dockerfile **(in the `server` folder this time!)** in the editor to the top right and copy the following to the file:
 
 <pre class="file" data-filename="Dockerfile" data-target="replace">
 FROM node:12
@@ -49,10 +49,10 @@ Next, build the image.
 
 Run a container based on the image.
 
-`docker run --publish 12345:9000 node-test-app:1.0`{{execute}}
-
-If we want to, we can add the `--detach` option to the docker run command, in order to run the container in the background. Only the id of the container will be printed in the terminal. In this case, we need to stop the container afterwards with `docker stop [container ID]`. You can close it with `ctrl + C`.
+`docker run --detach --publish 12345:9000 node-test-app:1.0`{{execute}}
 
 Run `docker ps`{{execute}} to view all running containers.
 
 While the server container is running, you can access it at https://[[HOST_SUBDOMAIN]]-12345-[[KATACODA_HOST]].environments.katacoda.com/.
+
+After you have had a look at the page, let's close the container. To see all running containers and their IDs, run `docker ps`{{execute}}. Stop it with `docker stop [container ID]`.

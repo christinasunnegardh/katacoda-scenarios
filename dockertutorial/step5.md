@@ -5,13 +5,15 @@ Let's start by dockerizing the React application in the client folder, which is 
 ### Creating a Dockerfile
 To create a Docker image, we must start by creating a Dockerfile in the `client` folder. 
 
+*You can run the commands below in the terminal below by clicking on them.*
+
 *enter the client folder*
 `cd my-application/client/`{{execute}}
 
 *create the Dockerfile*
 `touch Dockerfile`{{execute}}
 
-Navigate to your newly created Dockerfile (in the `client` folder) in the editor to the top left and copy the following to the file:
+Navigate to your newly created Dockerfile (in the `client` folder) in the editor to the top right and copy the following to the file:
 
 <pre class="file" data-filename="Dockerfile" data-target="replace">
 FROM node:12
@@ -45,10 +47,10 @@ We then run npm install on the image. We add the flag `-- silent` to suppress th
 We want to copy the rest of the source code as well.
 
 - `EXPOSE 3000`
-We need to specify on what port we can access the container. The default port used by React development server is 3000, so this is the port we'll expose.
+We need to specify on what port we can access the container. The default port used by React development server is 3000, so this is the port we'll expose for simplicity.
 
 - `CMD ["npm", "start"]`
-Finally, we state which command we should execute when a container is run.
+Finally, we state what command we should execute when a container is run.
 
 <!-- "The EXPOSE instruction informs Docker that the container listens on the specified network ports at runtime." "If you EXPOSE a port, the service in the container is not accessible from outside Docker, but from inside other Docker containers. So this is good for inter-container communication." not sure if i understand -->
 <!-- Maybe explain this more -->
@@ -80,9 +82,9 @@ Make sure you're still in the `client` folder, and run the following command to 
 
 `docker image build --tag react-test-app:1.0 .`{{execute}}
 
-*This might take some time!*
+*This might take some time! Especially step 4.*
 
-The --tag option let's you state the name of the image and the tag/version, on the format `name:tag`. When the build has finished you should see 
+The `--tag` option let's you state the name of the image and the tag/version, on the format `name:tag`. When the build has finished you should see:
 
 `Successfully built [Image ID]
 Successfully tagged react-test-app:1.0`
@@ -93,8 +95,12 @@ To see all available images, run `docker images`{{execute}}.
 
 Time to run a container based of our image. 
 
-`docker container run --interactive --publish 3000:3000 react-test-app:1.0`{{execute}}
+`docker container run --detach --tty --publish 3000:3000 react-test-app:1.0`{{execute}}
 
-**Congratulations!** You now have a running container. You can view the React page served from Docker at https://[[HOST_SUBDOMAIN]]-3000-[[KATACODA_HOST]].environments.katacoda.com/.
+The base command to run a container from an image is `docker container run [image_name:tag]`. We add the `--detach` flag to the docker run command, in order to run the container in the background. We also use the `--publish` flag that makes the container accessable from outside the container. To the left of the `:` is the port on the host machine that will be mapped to the port in the container (to the right of the `:`). The `--tty` flag allocates a psuedo-terminal so that our client can keep the connection open.
 
-Let's close it, so that we can continue. Press `ctrl + c`.
+**Congratulations!** You now have a running container. 
+
+Go and view the React page served from Docker at https://[[HOST_SUBDOMAIN]]-3000-[[KATACODA_HOST]].environments.katacoda.com/.
+
+After you have had a look at the page, let's close the container. To see all running containers and their IDs, run `docker ps`{{execute}}. Stop it with `docker stop [container ID]`.
