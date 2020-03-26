@@ -34,7 +34,7 @@ The first service we define is our frontend service, located in the `client` fol
 - *build* specifies the directory where we want to build our service. Needs to have a Dockerfile.
 - *ports* binds the container and host machine to the exposed port. The first port is the host port we want to use, and the second should be the same as the one exposed in the client’s Dockerfile. 
 - *depends_on* defines dependency between services. As the frontend depends on the backend, Docker will start the backend service before the frontend service.
-- *tty* ???
+- *tty* keeps the connection open, same as the `--tty` option when using the run command.
 
 The second service is the backend service, which is located in the `server` folder. We can see that we need to specify the same attributes as for the frontend, except the “depends_on” attribute. This, as the server does not depend on any other service, and therefore will be started first when running the docker compose command.
 
