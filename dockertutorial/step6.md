@@ -14,7 +14,7 @@ Navigate to your newly created Dockerfile **(in the `server` folder this time!)*
 FROM node:12
 WORKDIR /usr/src/app
 COPY package.json .
-RUN npm install
+RUN npm install --silent
 COPY . .
 EXPOSE 9000
 CMD [ "npm", "start" ]

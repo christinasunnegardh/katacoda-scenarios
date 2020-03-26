@@ -17,7 +17,7 @@ Navigate to your newly created Dockerfile (in the `client` folder) in the editor
 FROM node:12
 WORKDIR /usr/src/app
 COPY package.json .
-RUN npm install
+RUN npm install --silent
 COPY . .
 EXPOSE 3000
 CMD ["npm", "start"]
@@ -96,3 +96,5 @@ Time to run a container based of our image.
 `docker container run --interactive --publish 3000:3000 react-test-app:1.0`{{execute}}
 
 **Congratulations!** You now have a running container. You can view the React page served from Docker at https://[[HOST_SUBDOMAIN]]-3000-[[KATACODA_HOST]].environments.katacoda.com/.
+
+Let's close it, so that we can continue. Press `ctrl + c`.
