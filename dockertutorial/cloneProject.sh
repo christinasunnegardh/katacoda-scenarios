@@ -1,1 +1,1 @@
-git clone https://github.com/klaraesr/docker-tutorial.git
+git clone https://github.com/klaraesr/my-application.git
