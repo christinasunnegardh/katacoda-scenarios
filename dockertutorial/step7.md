@@ -4,7 +4,9 @@ In our case, we have created one image for the Node.js backend and one for the R
 
 In the root folder of the application, `my-application`, we will start off by creating the Compose file:
 
-`touch docker-compose.yml`{{execute}}
+*Go to the root folder* `cd ../`{{execute}}
+
+*Create the compose file* `touch docker-compose.yml`{{execute}}
 
 ![Docker5](https://github.com/christinasunnegardh/katacoda-scenarios/blob/master/dockertutorial/assets/5.png?raw=true)
 
@@ -21,7 +23,7 @@ In the *docker-compose.yml* file, we'll define the services that our application
         - '3000:3000'
       depends_on:
         - backend
-	tty: true
+	    tty: true
     backend:
       build: ./server
       ports:

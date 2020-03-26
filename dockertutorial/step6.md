@@ -51,6 +51,8 @@ Run a container based on the image.
 
 `docker run --publish 12345:9000 node-test-app:1.0`{{execute}}
 
-If we want to, we can add the `--detach` option to the docker run command, in order to run the container in the background. Only the id of the container will be printed in the terminal. In this case, we need to stop the container afterwards with `docker stop [container ID]`. Run `docker ps`{{execute}} to view all running containers.
+If we want to, we can add the `--detach` option to the docker run command, in order to run the container in the background. Only the id of the container will be printed in the terminal. In this case, we need to stop the container afterwards with `docker stop [container ID]`. You can close it with `ctrl + C`.
+
+Run `docker ps`{{execute}} to view all running containers.
 
 While the server container is running, you can access it at https://[[HOST_SUBDOMAIN]]-12345-[[KATACODA_HOST]].environments.katacoda.com/.
