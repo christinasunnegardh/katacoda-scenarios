@@ -80,6 +80,8 @@ Make sure you're still in the `client` folder, and run the following command to 
 
 `docker image build --tag react-test-app:1.0 .`{{execute}}
 
+*This might take some time!*
+
 The --tag option let's you state the name of the image and the tag/version, on the format `name:tag`. When the build has finished you should see 
 
 `Successfully built [Image ID]
