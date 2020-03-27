@@ -49,10 +49,10 @@ Next, build the image.
 
 Run a container based on the image.
 
-`docker run --detach --publish 12345:9000 node-test-app:1.0`{{execute}}
+`docker run --detach --publish 12345:9000 --name server node-test-app:1.0`{{execute}}
 
 Run `docker ps`{{execute}} to view all running containers.
 
 While the server container is running, you can access it at https://[[HOST_SUBDOMAIN]]-12345-[[KATACODA_HOST]].environments.katacoda.com/.
 
-After you have had a look at the page, let's close the container. To see all running containers and their IDs, run `docker ps`{{execute}}. Stop it with `docker stop [container ID]`.
+After you have had a look at the page, let's stop the containter with `docker stop server`{{execute}}.

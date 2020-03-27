@@ -82,7 +82,7 @@ Make sure you're still in the `client` folder, and run the following command to 
 
 `docker image build --tag react-test-app:1.0 .`{{execute}}
 
-*This might take some time! Especially step 4.*
+*This might take some time! Especially in step 5.*
 
 The `--tag` option let's you state the name of the image and the tag/version, on the format `name:tag`. When the build has finished you should see:
 
@@ -95,12 +95,12 @@ To see all available images, run `docker images`{{execute}}.
 
 Time to run a container based of our image. 
 
-`docker container run --detach --tty --publish 3000:3000 react-test-app:1.0`{{execute}}
+`docker container run --detach --tty --publish 3000:3000 --name client react-test-app:1.0`{{execute}}
 
-The base command to run a container from an image is `docker container run [image_name:tag]`. We add the `--detach` flag to the docker run command, in order to run the container in the background. We also use the `--publish` flag that makes the container accessable from outside the container. To the left of the `:` is the port on the host machine that will be mapped to the port in the container (to the right of the `:`). The `--tty` flag allocates a psuedo-terminal so that our client can keep the connection open.
+The base command to run a container from an image is `docker container run [image_name:tag]`. We add the `--detach` flag to the docker run command, in order to run the container in the background. We also use the `--publish` flag that makes the container accessable from outside the container. To the left of the `:` is the port on the host machine that will be mapped to the port in the container (to the right of the `:`). The `--tty` flag allocates a psuedo-terminal so that our client can keep the connection open. The `--name` option lets us name our container, here to `client`.
 
-**Congratulations!** You now have a running container. 
+**Congratulations!** You now have a running container. You can view all running containers with `docker ps`{{execute}}.
 
 Go and view the React page served from Docker at https://[[HOST_SUBDOMAIN]]-3000-[[KATACODA_HOST]].environments.katacoda.com/.
 
-After you have had a look at the page, let's close the container. To see all running containers and their IDs, run `docker ps`{{execute}}. Stop it with `docker stop [container ID]`.
+After you have had a look at the page, let's stop the container with `docker stop client`{{execute}}. 

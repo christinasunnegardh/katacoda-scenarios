@@ -19,11 +19,11 @@ In the *docker-compose.yml* file, we'll define the services that our application
   services:
     frontend:
       build: ./client
+      tty: true
       ports:
         - '3000:3000'
       depends_on:
         - backend
-	    tty: true
     backend:
       build: ./server
       ports:
@@ -32,9 +32,9 @@ In the *docker-compose.yml* file, we'll define the services that our application
 
 The first service we define is our frontend service, located in the `client` folder. 
 - *build* specifies the directory where we want to build our service. Needs to have a Dockerfile.
-- *ports* binds the container and host machine to the exposed port. The first port is the host port we want to use, and the second should be the same as the one exposed in the client’s Dockerfile. 
+- *ports* binds the container and host machine to the exposed port. The first port is the host port we want to use, and the second should be the same as the one exposed in the client’s Dockerfile.
 - *depends_on* defines dependency between services. As the frontend depends on the backend, Docker will start the backend service before the frontend service.
-- *tty* ???
+- *tty: true* keeps the connection open, same as the `--tty` option when using the run command.
 
 The second service is the backend service, which is located in the `server` folder. We can see that we need to specify the same attributes as for the frontend, except the “depends_on” attribute. This, as the server does not depend on any other service, and therefore will be started first when running the docker compose command.
 
@@ -42,7 +42,7 @@ Now that we have defined everything we need in the Compose file we can start bot
 
 `docker-compose up --build`{{execute}}
 
-Since we defined the port for the frontend at 3000, you can access the application at https://[[HOST_SUBDOMAIN]]-3000-[[KATACODA_HOST]].environments.katacoda.com/. 
+Since we defined the host port for the frontend at 3000, you can access the application at https://[[HOST_SUBDOMAIN]]-3000-[[KATACODA_HOST]].environments.katacoda.com/. 
 
 We have now used Docker compose to run the frontend and backend simultaneously in separate containers with one command! **Good job!**
 
