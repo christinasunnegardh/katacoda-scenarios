@@ -47,4 +47,4 @@ Since we defined the port for the frontend at 3000, you can access the applicati
 We have now used Docker compose to run the frontend and backend simultaneously in separate containers with one command! **Good job!**
 
 
-*PS: Did you find the easter eggs?!*
+*PS: Did you find the easter eggs?! If not, make sure you visited all the links when running the containers...*
