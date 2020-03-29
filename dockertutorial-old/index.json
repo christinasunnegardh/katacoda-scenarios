@@ -1,0 +1,55 @@
+{
+  "noindex": true,
+  "title": "dockertutorial",
+  "description": "Docker tutorial DD2428 DevOps",
+  "difficulty": "Beginner",
+  "time": "60 minutes",
+  "details": {
+    "steps": [
+      {
+        "title": "What is Docker?",
+        "text": "step1.md"
+      },
+      {
+        "title": "Docker's role in DevOps",
+        "text": "step2.md"
+      },
+      {
+        "title": "",
+        "text": "step3.md"
+      },
+      {
+        "title": "",
+        "text": "step4.md"
+      },
+      {
+        "title": "Dockerize the frontend",
+        "text": "step5.md"
+      },
+      {
+        "title": "Dockerize the server",
+        "text": "step6.md"
+      },
+      {
+        "title": "Docker Compose",
+        "text": "step7.md"
+      }
+    ],
+    "intro": {
+      "text": "intro.md",
+      "courseData": "cloneProject.sh"
+    },
+    "finish": {
+      "text": "finish.md"
+    },
+    "assets": {
+    }
+  },
+  "environment": {
+    "uilayout": "editor-terminal",
+    "uimessage1": "\u001b[32mYour Interactive Bash Terminal.\r\n"
+  },
+  "backend": {
+    "imageid": "docker"
+  }
+}
