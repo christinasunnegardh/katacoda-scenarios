@@ -1,4 +1,4 @@
-*If you already have an overall knowledge about Docker, you can fast forward by clicking here.*
+*If you already have an overall knowledge about Docker, you can fast forward to step 3.*
 
 Docker is a service that enables developers to run software virtually anywhere, without having to worry about aspects of the environment (for example dependencies, libraries and different OS:es). It enables this by ultimately providing isolated containers in which the software is run. What containers are and how they are created will be explained below.
 
