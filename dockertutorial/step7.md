@@ -47,7 +47,7 @@ Go to the following file:
 On line 34, replace   
 `"proxy": "http://localhost:9000"`  
 with  
-`"https://[[HOST_SUBDOMAIN]]-9000-[[KATACODA_HOST]].environments.katacoda.com/"`
+`"https://[[HOST_SUBDOMAIN]]-9000-[[KATACODA_HOST]].environments.katacoda.com"`
 
 <br />
 Next, go to the following file: `client/src/App.js`  
