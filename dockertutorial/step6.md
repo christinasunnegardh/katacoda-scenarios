@@ -13,7 +13,7 @@ Navigate to your newly created Dockerfile **(in the `server` folder this time!)*
 <pre class="file" data-filename="Dockerfile" data-target="replace">
 FROM node:12
 WORKDIR /usr/src/app
-COPY package*.json /.
+COPY package*.json ./
 RUN npm install --silent
 COPY . .
 EXPOSE 9000

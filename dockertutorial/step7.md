@@ -38,6 +38,22 @@ The first service we define is our frontend service, located in the `client` fol
 
 The second service is the backend service, which is located in the `server` folder. We can see that we need to specify the same attributes as for the frontend, except the “depends_on” attribute. This, as the server does not depend on any other service, and therefore will be started first when running the docker compose command.
 
+## Katacoda: Setting endpoints
+Due to that katacoda creates random addresses for the localhost, we need to set the endpoints manually. You will need to do this by going into:
+`client/src/App.js`
+
+on line 24, replace `"http://localhost:9000/trivia"`, with `"https://[[HOST_SUBDOMAIN]]-9000-[[KATACODA_HOST]].environments.katacoda.com/trivia"`.
+
+
+You will also need to go into:
+`client/package.json`
+
+on line 34, replace `"proxy": "http://localhost:9000"`, with `"https://[[HOST_SUBDOMAIN]]-9000-[[KATACODA_HOST]].environments.katacoda.com/"`
+
+In normal cases, this is not required on your own machine.
+
+## Run both containers
+
 Now that we have defined everything we need in the Compose file we can start both parts of our application with just one command: 
 
 `docker-compose up --build`{{execute}}
