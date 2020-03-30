@@ -1,1 +1,1 @@
-git clone https://github.com/christinasunnegardh/my-app-test.git
+git clone https://github.com/klaraesr/my-application.git
