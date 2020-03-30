@@ -18,7 +18,7 @@ Navigate to your newly created Dockerfile (in the `client` folder) in the editor
 <pre class="file" data-filename="Dockerfile" data-target="replace">
 FROM node:12
 WORKDIR /usr/src/app
-COPY package.json .
+COPY package*.json /.
 RUN npm install --silent
 COPY . .
 EXPOSE 3000
@@ -35,8 +35,9 @@ Here we use the official Docker image for Node.js, version 12 as the parent/base
 - `WORKDIR /usr/src/app` 
 This creates the working directory on the image where the rest of the commands (COPY, RUN, etc..) will be executed.
 
+- `COPY package*.json ./`
 - `COPY package.json .`
-To be able to install all dependencies for our React frontend, we need to copy `package.json` from our host's file system to the image's filesystem.
+To be able to install all dependencies for our React frontend, we need to copy `package.json` and `package-lock.json` from our host's file system to the image's filesystem.
 
 - `RUN npm install`
 We then run npm install on the image. We add the flag `-- silent` to suppress the npm output. 
