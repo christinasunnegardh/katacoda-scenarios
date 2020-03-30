@@ -21,13 +21,13 @@ In the *docker-compose.yml* file, we'll define the services that our application
       build: ./client
       tty: true
       ports:
-        - '3000:3000'
+        - 3000:3000
       depends_on:
         - backend
     backend:
       build: ./server
       ports:
-        - '9000:9000'
+        - 9000:9000
 </pre>
 
 The first service we define is our frontend service, located in the `client` folder. 
