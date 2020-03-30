@@ -58,7 +58,7 @@ with
 `"https://[[HOST_SUBDOMAIN]]-9000-[[KATACODA_HOST]].environments.katacoda.com/trivia"`
 
 <br />
-In normal cases, this is not required on your own machine when using localhost.
+In normal cases, this is not required on your own machine when using localhost. 
 
 ## Run both containers
 
