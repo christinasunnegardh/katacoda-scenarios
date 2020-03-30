@@ -42,7 +42,7 @@ The second service is the backend service, which is located in the `server` fold
 Due to that katacoda creates random addresses for the localhost, we need to set the endpoints manually. You will need to do this by going into:
 `client/src/App.js`
 
-on line 24, replace `"http://localhost:9000/trivia"`, with `"https://[[HOST_SUBDOMAIN]]-9000-[[KATACODA_HOST]].environments.katacoda.com/trivia"`.
+on line 22, replace `"http://localhost:9000/trivia"`, with `"https://[[HOST_SUBDOMAIN]]-9000-[[KATACODA_HOST]].environments.katacoda.com/trivia"`.
 
 
 You will also need to go into:
