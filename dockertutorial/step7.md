@@ -42,7 +42,7 @@ The second service is the backend service, which is located in the `server` fold
 Due to that katacoda creates random addresses for the localhost, we need to set up a proxy from the frontend to the backend. You need to do this by following the steps below.
 
 Go to the following file:
-`client/package.json`
+`client/package.json`{{open}}
 
 On line 34, replace   
 `"proxy": "http://localhost:9000"`  
