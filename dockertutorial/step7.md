@@ -32,7 +32,7 @@ In the *docker-compose.yml* file, we'll define the services that our application
 
 The first service we define is our frontend service, located in the `client` folder. 
 - *build* specifies the directory where we want to build our service. Needs to have a Dockerfile.
-- *ports* binds the container and host machine to the exposed port. The first port is the host port we want to use, and the second should be the same as the one exposed in the client’s Dockerfile.
+- *ports* binds the container and host machine to the exposed port. The first port is the host port we want to use, and the second should be the same as the one exposed in the client’s Dockerfile. 
 - *depends_on* defines dependency between services. As the frontend depends on the backend, Docker will start the backend service before the frontend service.
 - *tty: true* keeps the connection open, same as the `--tty` option when using the run command.
 
@@ -41,8 +41,7 @@ The second service is the backend service, which is located in the `server` fold
 ## Katacoda: Setting proxy
 Due to that katacoda creates random addresses for the localhost, we need to set up a proxy from the frontend to the backend. You need to do this by following the steps below.
 
-Go to the following file:
-`client/package.json`{{open}}
+In the `client` folder, open `package.json`.
 
 On line 34, replace   
 `"proxy": "http://localhost:9000"`  
@@ -50,13 +49,15 @@ with
 `"proxy": "https://[[HOST_SUBDOMAIN]]-9000-[[KATACODA_HOST]].environments.katacoda.com"`
 
 <br />
-This is not required on your own machine when using localhost.
+This is not required on your own machine when using localhost. If we would not use port 9000 as the host port for the server, we would have to change the port of the proxy. 
 
 ## Run docker-compose
 
 Now that we have defined everything we need in the Compose file we can start both parts of our application with just one command: 
 
 `docker-compose up --build`{{execute}}
+
+`docker-compose up` creates and runs all containers for the services we have defined. If the images are not built yet, the command will do this as well but only after trying to start the containers. The `--build` flag ensures that we build the images before starting containers. After we have built once, `docker-compose up` is enough to run our application.
 
 Since we defined the host port for the frontend at 3000, you can access the application at https://[[HOST_SUBDOMAIN]]-3000-[[KATACODA_HOST]].environments.katacoda.com/. As both your frontend and backend are up and running, you might see a different result on the frontend now..
 
