@@ -58,9 +58,10 @@ Now that we have defined everything we need in the Compose file we can start bot
 
 `docker-compose up --build`{{execute}}
 
-Since we defined the host port for the frontend at 3000, you can access the application at https://[[HOST_SUBDOMAIN]]-3000-[[KATACODA_HOST]].environments.katacoda.com/. 
+Since we defined the host port for the frontend at 3000, you can access the application at https://[[HOST_SUBDOMAIN]]-3000-[[KATACODA_HOST]].environments.katacoda.com/. As both your frontend and backend are up and running, you might see a different result on the frontend now..
 
 We have now used Docker compose to run the frontend and backend simultaneously in separate containers with one command! **Good job!**
 
+This marks the end of this tutorial - hope you have enjoyed it!
 
 *PS: Did you find the easter eggs?! If not, make sure you visited all the links when running the containers...*
