@@ -52,7 +52,7 @@ with
 <br />
 This is not required on your own machine when using localhost.
 
-## Run both containers
+## Run docker-compose
 
 Now that we have defined everything we need in the Compose file we can start both parts of our application with just one command: 
 
