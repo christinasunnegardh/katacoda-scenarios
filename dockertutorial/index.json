@@ -23,16 +23,20 @@
         "text": "step4.md"
       },
       {
-        "title": "Dockerize the frontend",
+        "title": "Dockerize the frontend pt. 1",
         "text": "step5.md"
       },
       {
-        "title": "Dockerize the server",
+        "title": "Dockerize the frontend pt. 2",
         "text": "step6.md"
       },
       {
-        "title": "Docker Compose",
+        "title": "Dockerize the server",
         "text": "step7.md"
+      },
+      {
+        "title": "Docker Compose",
+        "text": "step8.md"
       }
     ],
     "intro": {

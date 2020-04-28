@@ -1,34 +1,12 @@
-Dockerizing the backend, follows the same steps as for the frontend with some slight changes in the Dockerfile.
-
-### Creating a Dockerfile
-
-*enter the server folder*
-`cd ../server/`{{execute}}
-
-*create the Dockerfile*
-`touch Dockerfile`{{execute}}
-
-Navigate to your newly created Dockerfile **(in the `server` folder this time!)** in the editor to the top right and copy the following to the file:
-
-<pre class="file" data-filename="Dockerfile" data-target="replace">
-FROM node:12
-WORKDIR /usr/src/app
-COPY package*.json ./
-RUN npm install --silent
-COPY . .
-EXPOSE 9000
-CMD [ "npm", "start" ]
-</pre>
-
-Our Dockerfile will look very similar to that of the client, except for the port. In `app.js` we can see that our server listens to port 9000, so we should expose this.
+Now that our Dockerfile is done, we can continue by building our Docker image and then run a container based on it. 
 
 ### Build Docker image
 
 **Exclude files during build**
 
-.dockerignore should ignore the same files as on the client.
+Before we build the image, we want to exclude some files from the build to make the build lighter and faster. We will specify these folders and files in a file called `.dockerignore` in the client folder.
 
-*create the file (make sure you are still in the **server** folder)*
+*create the file (make sure you are still in the **client** folder)*
 `touch .dockerignore`{{execute}} 
 
 Open the `.dockerignore` file in the editor and paste the following:
@@ -39,20 +17,34 @@ node_modules
 .gitignore
 </pre>
 
+The node_modules folder can be ignored, as they will be installed on build. We are also ignoring files that are related to Git.
+
+
 **Run build command**
 
-Next, build the image.
+Make sure you're still in the `client` folder, and run the following command to build an image in the current directory:
 
-`docker image build --tag node-test-app:1.0 .`{{execute}}
+`docker image build --tag react-test-app:1.0 .`{{execute}}
+
+*This might take some time! Especially step 4, when all dependencies are installed.*
+
+The `--tag` option let's you state the name of the image and the tag/version, on the format `name:tag`. When the build has finished you should see:
+
+`Successfully built [Image ID]
+Successfully tagged react-test-app:1.0`
+
+To see all available images, run `docker images`{{execute}}.
 
 ### Run container
 
-Run a container based on the image.
+Time to run a container based of our image. 
 
-`docker run --detach --publish 12345:9000 --name server node-test-app:1.0`{{execute}}
+`docker container run --detach --tty --publish 3000:3000 --name client react-test-app:1.0`{{execute}}
 
-Run `docker ps`{{execute}} to view all running containers.
+The base command to run a container from an image is `docker container run [image_name:tag]`. We add the `--detach` flag to the docker run command, in order to run the container in the background. We also use the `--publish` flag that makes the container accessable from outside the container. To the left of the `:` is the port on the host machine that will be mapped to the port in the container (to the right of the `:`). The `--tty` flag allocates a psuedo-terminal so that our client can keep the connection open. The `--name` option lets us name our container, here to `client`.
 
-While the server container is running, you can access it at https://[[HOST_SUBDOMAIN]]-12345-[[KATACODA_HOST]].environments.katacoda.com/.
+**Congratulations!** You now have a running container. You can view all running containers with `docker ps`{{execute}}.
 
-After you have had a look at the page, let's stop the containter with `docker stop server`{{execute}}.
+Go and view the React page served from Docker at https://[[HOST_SUBDOMAIN]]-3000-[[KATACODA_HOST]].environments.katacoda.com/.
+
+After you have had a look at the page, let's stop the container with `docker stop client`{{execute}}. 

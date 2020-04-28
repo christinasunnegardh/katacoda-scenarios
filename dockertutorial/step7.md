@@ -1,68 +1,58 @@
-Docker Compose makes it possible to configure and run containers from different images with a single command. Hence, instead of having to type in multiple commands to run containers manually, developers and testers only need to use one command. This is done by creating a Docker Compose file. 
+Dockerizing the backend, follows the same steps as for the frontend with some slight changes in the Dockerfile.
 
-In our case, we have created one image for the Node.js backend and one for the React frontend, Docker compose will then make it possible to run both of these with just one command.
+### Creating a Dockerfile
 
-In the root folder of the application, `my-application`, we will start off by creating the Compose file:
+*enter the server folder*
+`cd ../server/`{{execute}}
 
-*Go to the root folder* `cd ../`{{execute}}
+*create the Dockerfile*
+`touch Dockerfile`{{execute}}
 
-*Create the compose file* `touch docker-compose.yml`{{execute}}
+Navigate to your newly created Dockerfile **(in the `server` folder this time!)** in the editor to the top right and copy the following to the file:
 
-![Docker5](https://github.com/christinasunnegardh/katacoda-scenarios/blob/master/dockertutorial/assets/5.png?raw=true)
-
-Your folder structure should now look as the above image. 
-
-In the *docker-compose.yml* file, we'll define the services that our application consists of.  
-
-<pre class="file" data-filename="docker-compose.yml" data-target="replace">
-  version: '3'
-  services:
-    frontend:
-      build: ./client
-      tty: true
-      ports:
-        - 3000:3000
-      depends_on:
-        - backend
-    backend:
-      build: ./server
-      ports:
-        - 9000:9000
+<pre class="file" data-filename="Dockerfile" data-target="replace">
+FROM node:12
+WORKDIR /usr/src/app
+COPY package*.json ./
+RUN npm install --silent
+COPY . .
+EXPOSE 9000
+CMD [ "npm", "start" ]
 </pre>
 
-The first service we define is our frontend service, located in the `client` folder. 
-- *build* specifies the directory where we want to build our service. Needs to have a Dockerfile.
-- *ports* binds the container and host machine to the exposed port. The first port is the host port we want to use, and the second should be the same as the one exposed in the client’s Dockerfile. 
-- *depends_on* defines dependency between services. As the frontend depends on the backend, Docker will start the backend service before the frontend service.
-- *tty: true* keeps the connection open, same as the `--tty` option when using the run command.
+Our Dockerfile will look very similar to that of the client, except for the port. In `app.js` we can see that our server listens to port 9000, so we should expose this.
 
-The second service is the backend service, which is located in the `server` folder. We can see that we need to specify the same attributes as for the frontend, except the “depends_on” attribute. This, as the server does not depend on any other service, and therefore will be started first when running the docker compose command.
+### Build Docker image
 
-## Katacoda: Setting proxy
-Due to that katacoda creates random addresses for the localhost, we need to set up a proxy from the frontend to the backend. You need to do this by following the steps below.
+**Exclude files during build**
 
-In the `client` folder, open `package.json`.
+.dockerignore should ignore the same files as on the client.
 
-On line 34, replace   
-`"proxy": "http://localhost:9000"`  
-with  
-`"proxy": "https://[[HOST_SUBDOMAIN]]-9000-[[KATACODA_HOST]].environments.katacoda.com"`
+*create the file (make sure you are still in the **server** folder)*
+`touch .dockerignore`{{execute}} 
 
-<br />
-This is not required on your own machine when using localhost. If we would not use port 9000 as the host port for the server, we would have to change the port of the proxy. 
+Open the `.dockerignore` file in the editor and paste the following:
 
-## Run docker-compose
+<pre class="file" data-filename=".dockerignore" data-target="replace">
+node_modules 
+.git
+.gitignore
+</pre>
 
-Now that we have defined everything we need in the Compose file we can start both parts of our application with just one command: 
+**Run build command**
 
-`docker-compose up --build`{{execute}}
+Next, build the image.
 
-`docker-compose up` creates and runs all containers for the services we have defined. If the images are not built yet, the command will do this as well but only after trying to start the containers. The `--build` flag ensures that we build the images before starting containers. After we have built once, `docker-compose up` is enough to run our application.
+`docker image build --tag node-test-app:1.0 .`{{execute}}
 
-Since we defined the host port for the frontend at 3000, you can access the application at https://[[HOST_SUBDOMAIN]]-3000-[[KATACODA_HOST]].environments.katacoda.com/. As both your frontend and backend are up and running, you might see a different result on the frontend now..
+### Run container
 
-We have now used Docker compose to run the frontend and backend simultaneously in separate containers with one command! **Good job!**
+Run a container based on the image.
 
-This marks the end of this tutorial - hope you have enjoyed it!
+`docker run --detach --publish 12345:9000 --name server node-test-app:1.0`{{execute}}
 
-*PS: Did you find the easter eggs?! If not, make sure you visited all the links when running the containers...*
+Run `docker ps`{{execute}} to view all running containers.
+
+While the server container is running, you can access it at https://[[HOST_SUBDOMAIN]]-12345-[[KATACODA_HOST]].environments.katacoda.com/.
+
+After you have had a look at the page, let's stop the containter with `docker stop server`{{execute}}.
